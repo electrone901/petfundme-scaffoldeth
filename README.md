@@ -1,6 +1,14 @@
-# 🏗 Scaffold-ETH 2
+# 🏗 PetsFundMe - Scaffold-ETH 2
 
-🧪 An open-source, up-to-date toolkit for building decentralized applications (dapps) on the Ethereum blockchain. It's designed to make it easier for developers to create and deploy smart contracts and build user interfaces that interact with those contracts.
+PetsFundMe is a social app built by the community for everyone who supports pets. PetsFundMe is an NFT platform where pet owners and pet lovers come together and help each other to solve their pet's needs from expensive surgeries to food supplies or free services.
+
+PetsFundMe is the perfect pet hub for nonprofits, medical & government institutions, influencers, and artists to come together to solve the needs of the most vulnerable Pets. Come to ask for financial support, as questions, answer questions, and give or receive donations. Come join us to make this planet a better world.
+
+![Home]()
+
+## Contract Deployed
+
+- Polygon Mumbai
 
 ⚙️ Built using NextJS, RainbowKit, Hardhat, Wagmi, and Typescript.
 
@@ -145,10 +153,10 @@ Use this hook to read public variables and get data from read-only functions of 
 
 ```ts
 const { data: totalCounter } = useScaffoldContractRead({
-  contractName: "YourContract",
-  functionName: "getGreeting",
-  args: ["ARGUMENTS IF THE FUNCTION ACCEPTS ANY"],
-});
+  contractName: 'YourContract',
+  functionName: 'getGreeting',
+  args: ['ARGUMENTS IF THE FUNCTION ACCEPTS ANY'],
+})
 ```
 
 This example retrieves the data returned by the `getGreeting` function of the `YourContract` smart contract. If the function accepts any arguments, they can be passed in the args array. The retrieved data is stored in the `data` property of the returned object.
@@ -159,18 +167,18 @@ Use this hook to send a transaction to your smart contract to write data or perf
 
 ```ts
 const { writeAsync, isLoading, isMining } = useScaffoldContractWrite({
-  contractName: "YourContract",
-  functionName: "setGreeting",
-  args: ["The value to set"],
+  contractName: 'YourContract',
+  functionName: 'setGreeting',
+  args: ['The value to set'],
   // For payable functions, expressed in ETH
-  value: "0.01",
+  value: '0.01',
   // The number of block confirmations to wait for before considering transaction to be confirmed (default : 1).
   blockConfirmations: 1,
   // The callback function to execute when the transaction is confirmed.
   onBlockConfirmation: (txnReceipt) => {
-    console.log("Transaction blockHash", txnReceipt.blockHash);
+    console.log('Transaction blockHash', txnReceipt.blockHash)
   },
-});
+})
 ```
 
 To send the transaction, you can call the `writeAsync` function returned by the hook. Here's an example usage:
@@ -189,14 +197,14 @@ Use this hook to subscribe to events emitted by your smart contract, and receive
 
 ```ts
 useScaffoldEventSubscriber({
-  contractName: "YourContract",
-  eventName: "GreetingChange",
+  contractName: 'YourContract',
+  eventName: 'GreetingChange',
   // The listener function is called whenever a GreetingChange event is emitted by the contract.
   // It receives the parameters emitted by the event, for this example: GreetingChange(address greetingSetter, string newGreeting, bool premium, uint256 value);
   listener: (greetingSetter, newGreeting, premium, value) => {
-    console.log(greetingSetter, newGreeting, premium, value);
+    console.log(greetingSetter, newGreeting, premium, value)
   },
-});
+})
 ```
 
 This example subscribes to the `GreetingChange` event emitted by the `YourContract` smart contract, and logs the parameters emitted by the event to the console whenever it is emitted. The `listener` function accepts the parameters emitted by the event, and can be customized according to your needs.
@@ -233,7 +241,7 @@ Use this hook to fetch details about a deployed smart contract, including the AB
 
 ```ts
 // ContractName: name of the deployed contract
-const { data: deployedContractData } = useDeployedContractInfo(contractName);
+const { data: deployedContractData } = useDeployedContractInfo(contractName)
 ```
 
 This example retrieves the details of the deployed contract with the specified name and stores the details in the deployedContractData object.
@@ -245,24 +253,24 @@ For reading data or sending transactions, it's recommended to use `useScaffoldCo
 
 ```ts
 const { data: yourContract } = useScaffoldContract({
-  contractName: "YourContract",
-});
+  contractName: 'YourContract',
+})
 // Returns the greeting and can be called in any function, unlike useScaffoldContractRead
-await yourContract?.greeting();
+await yourContract?.greeting()
 
 // Used to write to a contract and can be called in any function
-import { Signer } from "ethers";
-import { useSigner } from "wagmi";
+import { Signer } from 'ethers'
+import { useSigner } from 'wagmi'
 
-const { data: signer, isError, isLoading } = useSigner();
+const { data: signer, isError, isLoading } = useSigner()
 const { data: yourContract } = useScaffoldContract({
-  contractName: "YourContract",
+  contractName: 'YourContract',
   signerOrProvider: signer as Signer,
-});
+})
 const setGreeting = async () => {
   // Call the method in any function
-  await yourContract?.setGreeting("the greeting here");
-};
+  await yourContract?.setGreeting('the greeting here')
+}
 ```
 
 This example uses the `useScaffoldContract` hook to obtain a contract instance for the `YourContract` smart contract. The data property of the returned object contains the contract instance that can be used to call any of the smart contract methods.
