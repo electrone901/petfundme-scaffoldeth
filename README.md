@@ -4,7 +4,8 @@ PetsFundMe is a social app built by the community for everyone who supports pets
 
 PetsFundMe is the perfect pet hub for nonprofits, medical & government institutions, influencers, and artists to come together to solve the needs of the most vulnerable Pets. Come to ask for financial support, as questions, answer questions, and give or receive donations. Come join us to make this planet a better world.
 
-![Home](https://raw.githubusercontent.com/electrone901/petfundme-scaffoldeth/main/prev.png)
+![Home](https://raw.githubusercontent.com/electrone901/petfundme-scaffoldeth/main/home.png)
+![Fundraiser](https://raw.githubusercontent.com/electrone901/petfundme-scaffoldeth/main/prev.png)
 
 ## Contract Deployed
 
